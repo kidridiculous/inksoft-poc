@@ -1,0 +1,29 @@
+<div class="main-shop">
+    <header></header>
+    <div class="shop-content">
+        <nav>
+            <ul class="categories">
+                <li *ngFor="let topCat of categories" routerLinkActive="active">
+                    <a [routerLink]="['/shop', topCat.id]">{{topCat.name}}</a>
+                    <ul class="child-categories" *ngIf="selectedCategory===topCat">
+                        <li *ngFor="let childCat of topCat.children">
+                            <a [routerLink]="['/shop', childCat.id]">{{childCat.name}}</a>
+                        </li>
+                    </ul>
+                </li>       
+            </ul>
+        </nav>
+        <section class="shop-products">
+            <a class="product-list-item" *ngFor="let product of products" [routerLink]="['/product', product.id]">
+                <figure>
+                    <img [src]="product.thumbUrlFront"/>
+                </figure>    
+                <div>
+                    <span class="product-name">{{product.name}}</span>
+                    <span class="product-brand">{{product.manufacturer}}</span>
+                    <span class="product-price">{{product.namePrice}}</span>
+                </div>
+            </a>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="product-container">
+
+    <div class="product-detail" *ngIf="productLoaded">
+        <div class="product-top">
+            <div class="product-visual">
+                <img [src]="selectedStyle.imageFilePathFront"/>        
+            </div>
+            <div class="product-info">
+                <div class="product-title">
+                    <h2>{{product.manufacturer}}</h2>
+                    <h4>{{product.name}}</h4>
+                </div>
+                <div class="product-attrs">
+                    <div class="product-styles">
+                        <div class="attr-selected">
+                            <span class="attr-title">Color</span>
+                            <span class="attr-label" *ngIf="selectedStyle">{{selectedStyle.color}}</span>
+                            <span class="attr-label" *ngIf="!selectedStyle">Select a color</span>
+                        </div>
+                        <ul>
+                            <li *ngFor="let pc of product.styles" [ngClass]="{'active':pc===selectedStyle, 'grow': pc!==selectedStyle}" class="grow">
+                                <a class="sku-color" [ngStyle]="{'backgroundColor':'#' + pc.htmlColor}" (click)="selectStyle(pc.color)" [title]="pc.color"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product-sizes">
+                        <div class="attr-selected">
+                            <span class="attr-title">Size</span>
+                            <span class="attr-label" *ngIf="!selectedSize">Select a size</span>
+                            <span class="attr-label" *ngIf="selectedSize">{{selectedSize.name}}</span>
+                        </div>
+                        <ul>
+                            <li *ngFor="let size of selectedStyle.sizes">
+                                <a class="sku-color" (click)="selectSize(size)">{{size.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-action">
+                    <button class="design-product" (click)="designSku()">Design Now</button>
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <div class="product-desc">
+                <p>{{product.longDescription}}</p>        
+            </div>
+        </div>
+    </div>
+</div>
+
+
